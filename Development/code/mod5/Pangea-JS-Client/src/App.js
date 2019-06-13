@@ -9,7 +9,8 @@ import HomePage from './pages/HomePage'
 import Header from './pages/Header'
 import SignInForm from './pages/SignInForm'
 import SignUpForm from './pages/SignUpForm'
-import Inventory from './pages/Inventory'
+import Projects from './pages/Projects'
+import Profile from './pages/Profile'
 
 import API from './API'
 
@@ -55,7 +56,8 @@ class App extends Component {
           <Route exact path='/' component={HomePage}/>
           <Route path='/signup' component={props => <SignUpForm {...props} signin={signin} />}/>
           <Route path='/signin' component={props => <SignInForm {...props} signin={signin} />}/>
-          <Route path='/projects' render={props => <Inventory {...props} username={this.state.username} />}/> 
+          <Route path='/projects' render={props => <Projects {...props} username={this.state.username} />}/> 
+          <Route path='/profile' render={props => <Profile {...props} username={this.state.username} />}/>
           <Route component={() => <h1>Page not found</h1>}/>
         </Switch>
       </div>

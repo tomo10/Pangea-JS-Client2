@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import API from '../API'
 import AllProjects from './AllProjects'
 import MyProjects from './MyProjects'
+import CreateProject from './CreateProject'
+
 import ProjectDetailView from '../components/ProjectDetailView'
 import { Link, Route, Switch } from 'react-router-dom'
 
-class Inventory extends Component {
+
+class Projects extends Component {
     
     state = { UserProjects: [],
               allProjects: [],
@@ -71,6 +74,10 @@ class Inventory extends Component {
       this.setState( {searchTerm: event.target.value} )
     }
 
+    clearSearchTerm = () => {
+
+    }
+
     filterProjects = () => {
       return this.state.allProjects.filter(project => 
         project.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
@@ -84,20 +91,26 @@ class Inventory extends Component {
           <div>
             <br></br>
             <br></br> 
-            <Link className='detail-link' to='/projects/all'>ALL PROJECTS</Link> | <Link className='detail-link' to='/projects/backed'>MY PROJECTS</Link>          
+            <Link className='detail-link' to='/projects/all'>ALL PROJECTS</Link> | <Link className='detail-link' to='/projects/backed'>MY PROJECTS</Link> | <Link className='detail-link' to='/projects/create'>CREATE PROJECT</Link>         
             <br></br>
             <Switch>
-              <Route path='/projects/all' component={props =>
+              <Route path='/projects/all' render={props =>
                 <AllProjects
                   {...props}
                   handleSearch={this.getSearchTerm}
-                  allprojects={allProjects}
+                  allprojects={this.filterProjects()}
                 />
               } />
-              <Route path='/projects/backed' component={props =>
+              <Route path='/projects/backed' render={props =>
                 <MyProjects
                   {...props}
                   myprojects={UserProjects}
+                />
+              } />
+              <Route path='/projects/create' component={props =>
+                <CreateProject
+                  {...props}
+                  
                 />
               } />
               <Route path='/projects/:slug' render={props => {
@@ -110,10 +123,11 @@ class Inventory extends Component {
                 />
               }} />
             </Switch>
+            <br />
           </div>
         );
     }
   }
  
-export default Inventory;
+export default Projects;
  

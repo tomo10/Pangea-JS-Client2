@@ -19,7 +19,7 @@ class AllProjects extends React.Component {
         return (
             <div> 
                 <h1>ALL PROJECTS</h1>
-                <input onChange={this.props.handleSearch} type="text"></input>
+                <input onChange={(e) => this.props.handleSearch(e)} type="text"></input>
                 <br />
                 <br />
                 <div className='parent'>

@@ -50,6 +50,14 @@ class API {
         }).then(resp => resp.json())
     }
 
+    static createProject (project) {
+        return fetch('http://localhost:3000/projects', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(project)
+        }).then(resp => resp.json())
+    }
+
     static getAllProjects () {
         return fetch('http://localhost:3000/projects')
         .then(resp => resp.json())
