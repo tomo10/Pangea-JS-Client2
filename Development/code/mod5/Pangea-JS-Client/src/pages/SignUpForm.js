@@ -1,9 +1,10 @@
 import React from 'react';
 import API from '../API'
-
+import { Link } from 'react-router-dom'
+import styles from '../styling/signInUp.module.css';
 
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+
 
 class SignUpForm extends React.Component {
     state = { first_name: '',
@@ -17,11 +18,11 @@ class SignUpForm extends React.Component {
 
     handleSubmit = () => {
         API.signup(this.state)
-            .then(data => {
+            .then(data => { 
                 if (data.error) {
                     alert(`Didn't work: ${data.error}`)
                 } else {
-                    this.props.signin(this.state.username) //needs token as second arg
+                    this.props.signin(this.state.username, data.token)
                 }
             })
     }
@@ -69,9 +70,13 @@ class SignUpForm extends React.Component {
           type='password'
         />
         <br />
-        <Button onClick={handleSubmit} variant='contained' color='primary'>
+        <div className={styles.buttonContainer}>
+        <Link className='navigator-link' onClick={handleSubmit}>Signup</Link>
+        </div>
+
+        {/* <Button onClick={handleSubmit} variant='contained' color='primary'>
           SUBMIT
-        </Button>
+        </Button> */}
       </div>
          );
     }

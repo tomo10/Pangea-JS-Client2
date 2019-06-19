@@ -1,0 +1,39 @@
+.tile {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 250px;
+    width: 320px;
+    position: relative;
+  }
+
+  .image {
+    width: 100%;
+    height: 80%;
+  }
+
+  .font {
+    font-size: 12px;
+  }
+
+  .detailLink {
+    background-color: #f4f7f8;
+    color: rgb(72, 145, 104);
+    /* padding: 1em 1.5em; */
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    font-size: 12px;
+    font-weight: 900;
+    
+  }
+  
+  .detailLink:hover {
+    background-color: #555;
+  }
+
+  .linkPosition {
+    font: bold;
+    position: absolute;
+    left: 2px;
+    bottom: 0px; 
+  }

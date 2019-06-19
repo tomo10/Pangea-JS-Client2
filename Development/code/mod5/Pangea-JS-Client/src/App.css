@@ -2,14 +2,9 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
 
 .App-header {
-  background-color: #2642bb;
+  background-color:  #489168;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,16 +18,22 @@
   color: #61dafb;
 }
 
-.detail-link {
-  background-color: #2642bb;
-  color: white;
+body{
+  background: #723b3b;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.navigator-link {
+  background-color: #f4f7f8;
+  color: rgb(72, 145, 104);
   padding: 1em 1.5em;
   text-decoration: none;
   text-transform: uppercase;
+  font-weight: 900;
 }
 
-.detail-link:hover {
-  background-color: #555;
+.navigator-link:hover {
+  background-color: rgb(145, 143, 143);
 }
 
 
@@ -44,19 +45,22 @@
   grid-gap: 40px; 
 }
 
+.detail-container {
+  margin-top: 30px;
+}
+
 .detail-wrapper {
   margin-right: auto; 
   margin-left:  auto; 
 
-  max-width: 960px; 
+  max-width: 1000px; 
 
-  padding-right: 40px; 
-  padding-left:  40px;
-  padding-top: 60px;
+  padding-right: 20px; 
+  padding-left:  20px;
+  padding-top: 20px;
 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-
   
 }
 
@@ -66,32 +70,15 @@
 
 
 .parent {
-
+  /* margin: 20px; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-column-gap: 100px;
   grid-row-gap: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 
-.tile {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  height: 400px
-}
-
-.tile-image {
-  max-width: 90%;
-  max-height: 60%;
-}
-
-.tile:hover {
-  box-shadow: 0 28px 26px 0 rgba(0,0,0,0.2);
-}
-
-.tile-container {
-  padding: 2px 16px;
-}
 
 @keyframes App-logo-spin {
   from {

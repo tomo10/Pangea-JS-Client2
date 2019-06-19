@@ -3,8 +3,10 @@ import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { Link } from 'react-router-dom'
+import styles from '../styling/createProject.module.css';
 
-import Button from '@material-ui/core/Button'
+
 import API from '../API';
 
 class CreateProject extends Component {
@@ -32,12 +34,10 @@ class CreateProject extends Component {
          
         API.validate()
         .then(data => {
-            this.setState({ user_id: data.user_id })
-        }).then(() => {
-            debugger  
-            API.createProject(this.state) 
-            }
-            )
+                this.setState({ user_id: data.user_id })
+                }).then(() => {
+                    API.createProject(this.state) 
+                })
     }
 
 
@@ -45,58 +45,58 @@ class CreateProject extends Component {
 
         const { name, description, funding_required, image } = this.state
         return ( 
+        
+        <div className={styles.formContainer}>
+        <div className={styles.formWrapper}>
+            <div className={styles.box}>
+                <TextField
+                id="nameInput"
+                label="Project Name"
+                value={name}
+                onChange={this.handleChange}
+                margin="normal"
+                name='name'
+                />
+            </div>
 
-        <div>
-            <br />
+            <div className={styles.box}>
             <TextField
-            id="nameInput"
-            label="Project Name"
-            value={name}
-            onChange={this.handleChange}
-            margin="normal"
-            name='name'
-            />
-            <br />
-            <br />
-
+                id="imageInput"
+                label="Image URL"
+                value={image}
+                onChange={this.handleChange}
+                margin="normal"
+                name='image'
+                />
+            </div>
+            <div className={styles.submit}>
+                <InputLabel htmlFor="adornment-amount">Funding Required</InputLabel>
+                <Input
+                id="adornment-amount"
+                value={funding_required}
+                onChange={this.handleChange}
+                name='funding_required'
+                startAdornment={<InputAdornment position="start">£</InputAdornment>}
+                />
+            </div>
+            <div className={styles.box}>
             <TextField
-            id="imageInput"
-            label="Image URL"
-            value={image}
-            onChange={this.handleChange}
-            margin="normal"
-            name='image'
-            />
-            <br />
-            <br />
-            <br />
+                id="outlined-multiline-flexible"
+                label="Description"
+                multiline
+                rowsMax="4"
+                value={description}
+                onChange={this.handleChange}
+                margin="normal"
+                name='description'
+                />
+            </div>
+            
+            <div className={styles.submit}>
+                <Link className='navigator-link' onClick={this.handleSubmit}>SUBMIT FORM</Link>
+            </div>
 
-            <InputLabel htmlFor="adornment-amount">Funding Required</InputLabel>
-            <Input
-            id="adornment-amount"
-            value={funding_required}
-            onChange={this.handleChange}
-            name='funding_required'
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            />
-            <br />
-            <br />
-
-            <TextField
-            id="outlined-multiline-flexible"
-            label="Description"
-            multiline
-            rowsMax="4"
-            value={description}
-            onChange={this.handleChange}
-            margin="normal"
-            name='description'
-            />
-            <br />
-            <Button onClick={this.handleSubmit} variant='contained' color='primary'>
-                SUBMIT
-            </Button>
-
+        </div>
         </div>
         );
     }

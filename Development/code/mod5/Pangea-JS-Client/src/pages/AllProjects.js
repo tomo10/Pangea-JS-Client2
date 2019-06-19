@@ -1,6 +1,9 @@
 import React from 'react'
 import ProjectTile from '../components/ProjectTile'
+import styles from '../styling/allProjects.module.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 class AllProjects extends React.Component {
    
@@ -13,15 +16,20 @@ class AllProjects extends React.Component {
         )
     }
 
+    
     render() { 
-        // const {handleSearch} = this.props
+    
 
         return (
-            <div> 
-                <h1>ALL PROJECTS</h1>
-                <input onChange={(e) => this.props.handleSearch(e)} type="text"></input>
+            <div className={styles.container}> 
+                <div className={styles.wrap}>
+                    <div className={styles.search}>
+                        <input className={styles.searchTerm} onChange={(e) => this.props.handleSearch(e)} placeholder="Search by project keyword" type="text"></input>
+                        <button type='submit' className={styles.searchButton}><FontAwesomeIcon icon={faSearch}/></button>
+                    </div>
+                </div>
                 <br />
-                <br />
+                
                 <div className='parent'>
                 {
                     this.mapProjects()

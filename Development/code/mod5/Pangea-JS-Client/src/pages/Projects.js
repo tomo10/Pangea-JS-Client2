@@ -3,6 +3,7 @@ import API from '../API'
 import AllProjects from './AllProjects'
 import MyProjects from './MyProjects'
 import CreateProject from './CreateProject'
+import Dashboard from './Dashboard'
 
 import ProjectDetailView from '../components/ProjectDetailView'
 import { Link, Route, Switch } from 'react-router-dom'
@@ -10,8 +11,10 @@ import { Link, Route, Switch } from 'react-router-dom'
 
 class Projects extends Component {
     
-    state = { UserProjects: [],
+    state = { 
+              userProjects: [],
               allProjects: [],
+              watchList: [],
               searchTerm: ''
             }
 
@@ -22,26 +25,35 @@ class Projects extends Component {
             this.props.history.push('/signin')
         } else {
             API.getUserProjects()
-                .then(UserProjects => this.setState( {UserProjects} ))
+                .then(userProjects => {
+                this.setState( { userProjects: userProjects.parsed_donations } )
+              })
         }
 
         API.getAllProjects()
           .then(allProjects => {
             this.setState( {allProjects} )
           })
+
+        API.getWatchedProjects()
+          .then(watchList => {
+            this.setState( {watchList} )
+          })
+
     }
 
     handleDonationServer = (e, project) => {
       e.preventDefault()
       
-      let newDonationValue = parseInt(e.target.donation.value) + project.amount_pledged
+      let marginalDonation = parseInt(e.target.donation.value)
+      let newDonationValue = marginalDonation + project.amount_pledged
     
       // donation sent to server
       API.increaseDonationServer(newDonationValue, project)
-        .then(() => this.handleDonation(newDonationValue, project))
+        .then(() => this.handleDonationClient(newDonationValue, project, marginalDonation))
     }
 
-    handleDonation = (newDonationValue, targetProject) => {   
+    handleDonationClient = (newDonationValue, targetProject, marginalDonation) => {   
          
       const allProjects = this.state.allProjects.map(project =>
         project.id === targetProject.id
@@ -53,29 +65,44 @@ class Projects extends Component {
 
       this.setState({ allProjects })
 
-      // sends to server 
+      // Add to User Projects via server sends to server 
       API.validate()
       .then(data => {
-        API.createUserProject(data.user_id, foundProject.id)
-      })
+        API.createUserProject(marginalDonation, data.user_id, foundProject.id)
+      }).then(() => API.getUserProjects()
+        .then(resp => {
+        debugger
+      }))
 
-      //adds to UserProjects in state
-      this.addToUserProjects(foundProject)
+      //adds to UserProjects in state 
+      //this.addToUserProjects(foundProject)
     }
 
-    addToUserProjects = (newProj) => {
-        // if (!this.state.UserProjects.includes(newProj)) {
-          this.setState({ UserProjects: [...this.state.UserProjects, newProj] })
-        // }
-        // else (alert("This project is already in your donated projects list"))
-    }
+    // addToUserProjects = (newProj) => {
+    //     if (!this.state.userProjects.map(proj => proj.id).includes(newProj.id)) {
+    //       this.setState({ userProjects: [...this.state.userProjects, newProj] })
+    //     }
+    //     else (alert("Project already in your donations list. Donation amount added to your dashboard total"))
+    // }
 
+    addToWatchList = (watchedProject) => {
+        if (!this.state.watchList.includes(watchedProject)) {
+          this.setState( { watchList: [...this.state.watchList, watchedProject] })
+          //send to server 
+          API.validate()
+          .then(data => {
+            API.createWatchedProject(data.user_id, watchedProject.id)
+      })  
+        }
+        else (alert("This project is already on your watch list."))
+    }
+    
     getSearchTerm = (event) => {
       this.setState( {searchTerm: event.target.value} )
     }
 
     clearSearchTerm = () => {
-
+      this.setState({searchTerm: ''})
     }
 
     filterProjects = () => {
@@ -85,13 +112,13 @@ class Projects extends Component {
     }
 
     render() { 
-        const { UserProjects, allProjects } = this.state
+        const { userProjects, watchList, allProjects } = this.state
 
         return (
           <div>
             <br></br>
             <br></br> 
-            <Link className='detail-link' to='/projects/all'>ALL PROJECTS</Link> | <Link className='detail-link' to='/projects/backed'>MY PROJECTS</Link> | <Link className='detail-link' to='/projects/create'>CREATE PROJECT</Link>         
+            <Link onClick={() => this.clearSearchTerm()} className='navigator-link' to='/projects/all'>ALL PROJECTS</Link>  |  <Link className='navigator-link' to='/projects/backed'>MY DONATIONS</Link>  |  <Link className='navigator-link' to='/projects/create'>CREATE PROJECT</Link>  |  <Link className='navigator-link' to='/projects/dashboard'>DASHBOARD</Link>         
             <br></br>
             <Switch>
               <Route path='/projects/all' render={props =>
@@ -104,19 +131,27 @@ class Projects extends Component {
               <Route path='/projects/backed' render={props =>
                 <MyProjects
                   {...props}
-                  myprojects={UserProjects}
+                  myprojects={userProjects}
                 />
               } />
-              <Route path='/projects/create' component={props =>
+              <Route path='/projects/create' render={props =>
                 <CreateProject
                   {...props}
-                  
+                />
+              } />
+              <Route path='/projects/dashboard' render={props => 
+                <Dashboard 
+                  {...props}
+                  watchList={watchList}
+                  myprojects={userProjects}
+                  allProjects={allProjects}
                 />
               } />
               <Route path='/projects/:slug' render={props => {
                 const project = this.state.allProjects.find(project => project.slug === props.match.params.slug)
                 return <ProjectDetailView
                   {...props}
+                  addToWatchList={this.addToWatchList}
                   project={project}
                   projects={this.state.allProjects}
                   handleDonationServer={this.handleDonationServer} 

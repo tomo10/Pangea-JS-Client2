@@ -1,8 +1,9 @@
 import React from 'react';
 import API from '../API'
+import { Link } from 'react-router-dom'
+import styles from '../styling/signInUp.module.css';
 
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 
 class SignInForm extends React.Component {
     state = {   
@@ -50,9 +51,10 @@ class SignInForm extends React.Component {
           type='password'
         />
         <br />
-        <Button onClick={handleSubmit} variant='contained' color='primary'>
-          LOGIN
-        </Button>
+        <div className={styles.buttonContainer}>
+        <Link className='navigator-link' onClick={handleSubmit}>Signin</Link>
+        </div>    
+            
       </div>
          );
     }

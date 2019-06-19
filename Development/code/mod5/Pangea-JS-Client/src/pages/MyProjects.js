@@ -1,23 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import ProjectTile from '../components/ProjectTile'
+import MyProjectTile from '../components/MyProjectTile'
+import styles from '../styling/myProjects.module.css'
+
 
 class MyProjects extends React.Component {
-   
-
-    mapProjects = () => {
-        return this.props.myprojects.map(project => 
-        <div>
-        <ProjectTile project={project} />
-        </div>
-        )
+    
+    getDonations = () => {
+        const array = this.props.myprojects.map(proj => proj.donations).flatMap(obj => obj)
+        
     }
 
-    render() { 
+    mapProjects = () => {
+        // if (this.props.myprojects.parsed_donations) { 
+        return this.props.myprojects.map(project => 
+        <div>
+        <MyProjectTile project={project} />
+        </div>
+        )
+    } 
+    
+
+    render() {
         return ( 
-            <div>
-                <h1>MY PROJECTS</h1>
-                <div className='wrapper'>
+            <div className={styles.container}>
+                <div className='parent'>
                 {
                     this.mapProjects()
                 }

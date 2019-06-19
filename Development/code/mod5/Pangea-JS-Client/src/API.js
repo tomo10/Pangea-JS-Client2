@@ -36,20 +36,15 @@ class API {
         }).then(resp => resp.json())
     }
 
-    static getUserProjects () {
-        return fetch('http://localhost:3000/inventory', {
-            headers: { Authorization: localStorage.getItem('token')},
-        }).then(resp => resp.json())
-    }
-
-    static createUserProject (user_id, project_id) {
+    
+    static createUserProject (donation, user_id, project_id) {
         return fetch('http://localhost:3000/user_projects', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({user_id: user_id, project_id: project_id})
+            body: JSON.stringify({donation, user_id, project_id})
         }).then(resp => resp.json())
     }
-
+    
     static createProject (project) {
         return fetch('http://localhost:3000/projects', {
             method: 'POST',
@@ -57,9 +52,37 @@ class API {
             body: JSON.stringify(project)
         }).then(resp => resp.json())
     }
+    
+    static createWatchedProject (user_id, project_id) {
+        return fetch('http://localhost:3000/watched_projects', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({user_id, project_id})
+        }).then(resp => resp.json())
+    }
+
+    
+    static getUserProjects () {
+        return fetch('http://localhost:3000/inventory', {
+            headers: { Authorization: localStorage.getItem('token')},
+        }).then(resp => resp.json())
+    }
+
+    static getWatchedProjects () {
+        return fetch('http://localhost:3000/getwatched', {
+            headers: { Authorization: localStorage.getItem('token')},
+        }).then(resp => resp.json())
+    }
 
     static getAllProjects () {
         return fetch('http://localhost:3000/projects')
+        .then(resp => resp.json())
+    }
+
+    static getAllUserDonations () {
+        return fetch('http://localhost:3000/donations', {
+            headers: { Authorization: localStorage.getItem('token')},
+        })
         .then(resp => resp.json())
     }
    
