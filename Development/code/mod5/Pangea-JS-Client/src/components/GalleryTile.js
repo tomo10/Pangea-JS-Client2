@@ -33,10 +33,10 @@ class GalleryTile extends React.Component {
 
     return (
     <div className={styles.tile}>
-        <img src={image} className={styles.image} alt='picture'></img>
         <div >
         <h3 className={styles.font}>{name}</h3>
         </div>
+        <img src={image} className={styles.image} alt='picture'></img>
         <div className={styles.linkPosition}>
             <Link className={styles.detailLink} to={`/projects/${slug}`}>VIEW DETAILS</Link>
         </div>

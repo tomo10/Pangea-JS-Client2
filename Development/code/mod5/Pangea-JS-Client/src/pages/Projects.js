@@ -60,7 +60,7 @@ class Projects extends Component {
           ? {...project, amount_pledged: newDonationValue}
           : project
       )
-
+      //this found Project will have updated donation amount
       const foundProject = allProjects.find(project => project.id === targetProject.id)
 
       this.setState({ allProjects })
@@ -69,13 +69,13 @@ class Projects extends Component {
       API.validate()
       .then(data => {
         API.createUserProject(marginalDonation, data.user_id, foundProject.id)
-      }).then(() => API.getUserProjects()
-        .then(resp => {
-        debugger
-      }))
-
+        .then(() => API.getUserProjects())
+        .then(donations => this.setState({userProjects: donations.parsed_donations})
+      )})
+      
+      
       //adds to UserProjects in state 
-      //this.addToUserProjects(foundProject)
+      // this.addToUserProjects(foundProject)
     }
 
     // addToUserProjects = (newProj) => {

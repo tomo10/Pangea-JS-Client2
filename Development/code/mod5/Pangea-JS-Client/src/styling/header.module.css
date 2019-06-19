@@ -7,16 +7,24 @@
 }
 
 .colour {
-    color:  #489168;
+    color:  hsl(146, 34%, 43%);
 }
 
-.button {
+.logoContainer {
+    position: relative;
+}
 
+.logo {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
 }
 
 .navigatorLink {
     background-color: #f4f7f8;
-    color: rgb(72, 145, 104);
+    color: rgb(56, 71, 28);
     padding: 1em 1.5em;
     text-decoration: none;
     text-transform: uppercase;

@@ -2,3 +2,21 @@
     width: 100%;
     height: 45%;
   }
+
+.watchList {
+  margin-top: 30px;
+}
+
+.form {
+  margin-top: 30px;
+}
+
+.dollar {
+  margin-top: 20px;
+  border: 2px solid #38471c;
+}
+
+.input {
+  border: 12px solid white;
+  font-size: 14px;
+}

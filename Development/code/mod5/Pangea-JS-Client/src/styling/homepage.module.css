@@ -5,7 +5,7 @@
 .welcome {
     font-size: 35px;
     font-family: 'Spectral SC', serif;
-    color:  #489168;
+    color:  #38471c;
     /* color:  #61dafb; */
 }
 
@@ -17,6 +17,6 @@
 }
 
 .image {
-  max-width: 80%;
-  max-height: 70%;
+  max-width: 70%;
+  max-height: 60%;
 }

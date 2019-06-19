@@ -4,14 +4,15 @@
 
 
 .App-header {
-  background-color:  #489168;
+  background-color:  rgb(56, 71, 28);;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(255, 162, 0);
+  position: relative;
 }
 
 .App-link {
@@ -25,7 +26,7 @@ body{
 
 .navigator-link {
   background-color: #f4f7f8;
-  color: rgb(72, 145, 104);
+  color: rgb(56, 71, 28);
   padding: 1em 1.5em;
   text-decoration: none;
   text-transform: uppercase;

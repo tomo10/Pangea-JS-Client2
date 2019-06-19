@@ -17,7 +17,7 @@ body{
 
 .searchTerm {
   width: 100%;
-  border: 3px solid rgb(72, 145, 104);
+  border: 3px solid rgb(56, 71, 28);
   border-right: none;
   padding: 5px;
   height: 20px;
@@ -33,8 +33,8 @@ body{
 .searchButton {
   width: 40px;
   height: 36px;
-  border: 1px solid rgb(72, 145, 104);
-  background: rgb(72, 145, 104);
+  border: 1px solid rgb(56, 71, 28);
+  background: rgb(56, 71, 28);
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
