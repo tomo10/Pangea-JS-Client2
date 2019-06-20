@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Link } from 'react-router-dom'
 import styles from '../styling/createProject.module.css';
+import logo from '../images/MonochromeTransparent.png';
 
 
 import API from '../API';
@@ -48,6 +49,7 @@ class CreateProject extends Component {
         
         <div className={styles.formContainer}>
         <div className={styles.formWrapper}>
+        <img className={styles.logo} alt='logo' src={logo}></img>
             <div className={styles.box}>
                 <TextField
                 id="nameInput"

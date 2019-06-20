@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 class GalleryTile extends React.Component {
 
     state = { 
-              image: null,
+              image: 'https://www.nationalgeographic.com/content/dam/animals/rights-exempt/2019-travel-photo-contest/prod-yourshot-1791825--2-.jpg',
               name: null,
               slug: null
             }
@@ -33,9 +33,9 @@ class GalleryTile extends React.Component {
 
     return (
     <div className={styles.tile}>
-        <div >
+        {/* <div >
         <h3 className={styles.font}>{name}</h3>
-        </div>
+        </div> */}
         <img src={image} className={styles.image} alt='picture'></img>
         <div className={styles.linkPosition}>
             <Link className={styles.detailLink} to={`/projects/${slug}`}>VIEW DETAILS</Link>

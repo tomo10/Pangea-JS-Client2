@@ -36,3 +36,12 @@
   .tile:hover {
     box-shadow: 0 28px 26px 0 rgba(0,0,0,0.2);
   }
+
+  .donations {
+    display: inline-block;
+    padding-left: 215px;
+  }
+
+  .bullet {
+    padding-bottom: 0px
+  }

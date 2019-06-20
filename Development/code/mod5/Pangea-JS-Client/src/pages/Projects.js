@@ -85,17 +85,19 @@ class Projects extends Component {
     //     else (alert("Project already in your donations list. Donation amount added to your dashboard total"))
     // }
 
-    addToWatchList = (watchedProject) => {
-        if (!this.state.watchList.includes(watchedProject)) {
-          this.setState( { watchList: [...this.state.watchList, watchedProject] })
+    addToWatchList = (watchedProject) => { 
+        if (this.state.watchList.includes(obj => obj.id === watchedProject.id)) {
+        //   this.setState( { watchList: [...this.state.watchList, watchedProject] })
           //send to server 
           API.validate()
           .then(data => {
             API.createWatchedProject(data.user_id, watchedProject.id)
-      })  
+            .then(() => API.getWatchedProjects())
+            .then(watched => this.setState({watchList: watched}))  
+          })}
+          else (alert("This project is already on your watch list."))
         }
-        else (alert("This project is already on your watch list."))
-    }
+   
     
     getSearchTerm = (event) => {
       this.setState( {searchTerm: event.target.value} )

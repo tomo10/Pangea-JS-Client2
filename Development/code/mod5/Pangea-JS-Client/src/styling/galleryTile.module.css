@@ -1,16 +1,16 @@
 .tile {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    height: 267px;
-    width: 350px;
+    height: 357px;
+    width: 500px;
     padding-bottom: 20px;
     position: relative;
-    /* border: 6px groove #E2E2E2; */
+    border: 6px solid #E2E2E2;
   }
 
   .image {
     width: 100%;
-    height: 80%;
+    height: 94%;
   }
 
   .font {

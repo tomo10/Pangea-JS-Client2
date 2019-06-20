@@ -7,7 +7,7 @@ class MyProjectTile extends React.Component {
 
     loopDonations = () => {
         let arr = this.props.project.donations.map(obj => obj.donation)
-        return arr.map(el => <ul>£{el}</ul> 
+        return arr.map(el => <ul className={styles.bullet}>£{el}</ul> 
         )
        }
     
@@ -21,7 +21,7 @@ class MyProjectTile extends React.Component {
           <h3>{project.name}</h3>
           {/* <p>Total funding required: {project.funding_required}</p> */}
           <div>
-            <div className='donations'>{this.loopDonations()}</div>
+            <div className={styles.donations}>{this.loopDonations()}</div>
           </div>
         </div>
         <div className={styles.linkPosition}>

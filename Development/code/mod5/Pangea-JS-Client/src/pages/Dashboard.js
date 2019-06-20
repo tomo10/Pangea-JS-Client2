@@ -31,15 +31,18 @@ class Dashboard extends Component {
         : <h3>So far you have donated to {this.props.myprojects.length} Conservation project!</h3>
     }
 
-    
+
  
     
     render() { 
         
         return ( <div className={styles.container}>
                     <div className={styles.wrapper}>
+                        <div className={styles.gallery}>
+                            <h2 className={styles.headerFont}>Image Gallery</h2>
+                        </div>
                         <div className={styles.header}>
-                            <h2>Welcome to your dashboard</h2>
+                            <h2 className={styles.headerFont}>Welcome to your dashboard</h2>
                         </div>
                         <div className={styles.sidebar}>
                             <div>
@@ -49,8 +52,10 @@ class Dashboard extends Component {
                         <div className={styles.main}>
             
                             {this.numberOfProjects()}
-                            <h3>The total amount you've donated so far is: £{this.getDonationsTotal()}</h3>
-                            <h3>See the projects you are watching below:</h3>
+                            <h3>Donations total: £{this.getDonationsTotal()}</h3>
+                            <div>
+                                <h3 className={styles.headerFont}>Projects you are watching:</h3>
+                            </div>
                         <div className={styles.footer}>
                             <div className={styles.parent}>
                                 {this.mapWatchList()}
