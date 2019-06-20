@@ -30,6 +30,8 @@ class Dashboard extends Component {
         ? <h3>So far you have donated to {this.props.myprojects.length} Conservation projects!</h3>
         : <h3>So far you have donated to {this.props.myprojects.length} Conservation project!</h3>
     }
+
+    
  
     
     render() { 

@@ -5,11 +5,11 @@ import styles from '../styling/projectTile.module.css'
 
 class MyProjectTile extends React.Component {
 
-    // loopDonations = () => {
-    //     this.props.project.donations.map(donation => { 
-    //     return <h3>{donation.donation}</h3>
-    // })
-    // }
+    loopDonations = () => {
+        let arr = this.props.project.donations.map(obj => obj.donation)
+        return arr.map(el => <ul>£{el}</ul> 
+        )
+       }
     
     render () {
       const { project } = this.props
@@ -19,9 +19,10 @@ class MyProjectTile extends React.Component {
         <img src={project.image} className={styles.tileImage} alt='picture'></img>
         <div >
           <h3>{project.name}</h3>
-          <p>Total funding required: {project.funding_required}</p>
-          {/* <p>Donations: {project.donations}</p> */}
-          {/* <div>{this.loopDonations()}</div> */}
+          {/* <p>Total funding required: {project.funding_required}</p> */}
+          <div>
+            <div className='donations'>{this.loopDonations()}</div>
+          </div>
         </div>
         <div className={styles.linkPosition}>
             <Link className={styles.detailLink} to={`/projects/${project.slug}`}>VIEW DETAILS</Link>

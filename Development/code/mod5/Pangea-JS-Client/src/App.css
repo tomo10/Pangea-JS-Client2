@@ -5,7 +5,7 @@
 
 .App-header {
   background-color:  rgb(56, 71, 28);;
-  max-height: 100vh;
+  height: 184px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,11 @@
 body{
   background: #723b3b;
   font-family: 'Open Sans', sans-serif;
+}
+
+.donations {
+  display: inline-block;
+  padding-left: 80px;
 }
 
 .navigator-link {

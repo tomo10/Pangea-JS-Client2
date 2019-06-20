@@ -11,7 +11,7 @@ class MyProjects extends React.Component {
     }
 
     mapProjects = () => {
-        // if (this.props.myprojects.parsed_donations) { 
+     
         return this.props.myprojects.map(project => 
         <div>
         <MyProjectTile project={project} />
