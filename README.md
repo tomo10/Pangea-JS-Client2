@@ -9,7 +9,7 @@ A crowdfunding platform for conservation projects. Users can create a profile to
 
 ## Technical details
 - frontend built with HTML and React.
-- styling with pure CSS.
+- styling with CSS and Material UI.
 - backend built with Ruby on Rails with three endpoints (one for the users, one for projects, and one for watched projects). 
 - user JWT for Authentication.
 
@@ -19,7 +19,7 @@ Fork and clone the project back end at https://github.com/tomo10/Pangea-API
 
 1. In your terminal, go to the client repository `cd client` 
 - run `npm install` 
-- `npm install --save mdbreact` for the material design bootstrap library
+- `npm install @material-ui/core` for the material design library
 - `npm install --save reactstrap react react-dom` for reactstrap component
 - `npm start`
 
