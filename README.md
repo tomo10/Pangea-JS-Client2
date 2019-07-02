@@ -20,7 +20,6 @@ Fork and clone the project back end at https://github.com/tomo10/Pangea-API
 1. In your terminal, go to the client repository `cd client` 
 - run `npm install` 
 - `npm install @material-ui/core` for the material design library
-- `npm install --save reactstrap react react-dom` for reactstrap component
 - `npm start`
 
 2. Go to the server repository `cd server`
